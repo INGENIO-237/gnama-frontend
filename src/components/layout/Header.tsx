@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import MobileNav from "./MobileNav";
 
 export default function Header() {
   return (
@@ -7,6 +8,10 @@ export default function Header() {
         <Link className="text-3xl font-bold tracking-tight text-orange-500" to="/">
           Gnama
         </Link>
+
+        <div className="md:hidden">
+            <MobileNav />
+        </div>
       </div>
     </div>
   );
