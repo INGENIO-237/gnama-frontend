@@ -15,6 +15,7 @@ export default function CustomAuth0Provider({ children }: Props) {
 
   function onRedirectCallback(appState?: AppState, user?: User) {
     console.log({ user });
+    console.log({ appState });
   }
 
   return (
@@ -22,7 +23,7 @@ export default function CustomAuth0Provider({ children }: Props) {
       domain={domain}
       clientId={clientId}
       authorizationParams={{ redirect_uri: redirectUri }}
-      onRedirectCallback={onRedirectCallback}
+      onRedirectCallback={onRedirectCallback} 
     >
       {children}
     </Auth0Provider>
