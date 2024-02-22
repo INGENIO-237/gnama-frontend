@@ -5,7 +5,7 @@ import MainNav from "./MainNav";
 export default function Header() {
   return (
     <div className="border-b-2 border-b-orange-500 py-5">
-      <div className="container flex mx-auto justify-between item-center">
+      <div className="container flex mx-auto justify-between items-center">
         <Link
           className="text-3xl font-bold tracking-tight text-orange-500"
           to="/"
