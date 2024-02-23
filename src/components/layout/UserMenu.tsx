@@ -15,7 +15,7 @@ export default function UserMenu() {
   const { user, logout } = useAuth0();
   return (
     <div className="space-x-6 text-orange-500 flex-1 flex">
-      <Link to="#">Orders</Link>
+      <Link to="/orders">Orders</Link>
       <DropdownMenu>
         <DropdownMenuTrigger className="flex gap-1 items-center text-ellipsis">
           <CircleUser />
@@ -28,7 +28,7 @@ export default function UserMenu() {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link to="#" className="hover:text-orange-500">
+            <Link to="/profile" className="hover:text-orange-500">
               Profile
             </Link>
           </DropdownMenuItem>
