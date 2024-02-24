@@ -1,3 +1,4 @@
+import { useCreateUser } from "@/api/data/users";
 import { AppState, Auth0Provider, User } from "@auth0/auth0-react";
 
 type Props = {
@@ -5,6 +6,8 @@ type Props = {
 };
 
 export default function CustomAuth0Provider({ children }: Props) {
+  const { registerUser } = useCreateUser();
+
   const domain = import.meta.env.VITE_AUTH0_DOMAIN;
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
   const redirectUri = import.meta.env.VITE_AUTH0_CALLBACK_URL;
@@ -14,8 +17,12 @@ export default function CustomAuth0Provider({ children }: Props) {
   }
 
   function onRedirectCallback(appState?: AppState, user?: User) {
-    console.log({ user });
-    console.log({ appState });
+    if (user) {
+      registerUser({
+        authProviderId: user.sub as string,
+        email: user.email as string,
+      });
+    }
   }
 
   return (
@@ -23,7 +30,7 @@ export default function CustomAuth0Provider({ children }: Props) {
       domain={domain}
       clientId={clientId}
       authorizationParams={{ redirect_uri: redirectUri }}
-      onRedirectCallback={onRedirectCallback} 
+      onRedirectCallback={onRedirectCallback}
     >
       {children}
     </Auth0Provider>
