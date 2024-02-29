@@ -1,4 +1,4 @@
-import { AppState, Auth0Provider, User } from "@auth0/auth0-react";
+import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -17,8 +17,7 @@ export default function CustomAuth0Provider({ children }: Props) {
     throw new Error("Unable to initialize auth0");
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function onRedirectCallback(appState?: AppState, user?: User) {
+  function onRedirectCallback() {
     navigate("/auth-callback");
   }
 
