@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/helpers/LoadingButton";
 import { Button } from "@/components/ui/button";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ProfileFormSchema = z.object({
   email: z.string().optional(),
@@ -22,7 +23,7 @@ const ProfileFormSchema = z.object({
   country: z.string().min(3, "Country is required"),
 });
 
-type ProfileFormData = z.infer<typeof ProfileFormSchema>;
+export type ProfileFormData = z.infer<typeof ProfileFormSchema>;
 
 type Props = {
   onSave: (userProfileData: ProfileFormData) => void;
@@ -30,6 +31,8 @@ type Props = {
 };
 
 export default function UserProfileForm({ onSave, isLoading }: Props) {
+  const { user } = useAuth0();
+
   const form = useForm<ProfileFormData>({
     resolver: zodResolver(ProfileFormSchema),
   });
@@ -51,7 +54,7 @@ export default function UserProfileForm({ onSave, isLoading }: Props) {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input {...field} className="bg-white" />
+                <Input {...field} value={user?.email} disabled className="bg-white" />
               </FormControl>
             </FormItem>
           )}

@@ -1,11 +1,8 @@
+import { useUpdateUser } from "@/api/data/users";
 import UserProfileForm from "@/forms/UserProfile";
-import { useState } from "react";
 
 export default function ProfilePage() {
-  const [isLoading, setIsLoading] = useState(false);
-  function onSave() {
-    setIsLoading(true)
-  }
+  const { updateUser, isLoading } = useUpdateUser();
 
-  return <UserProfileForm onSave={onSave} isLoading={isLoading} />;
+  return <UserProfileForm onSave={updateUser} isLoading={isLoading} />;
 }
