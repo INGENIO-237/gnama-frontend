@@ -3,6 +3,7 @@ import Layout from "./layouts/layout";
 import HomePage from "./pages/HomePage";
 import CallBackPage from "./pages/CallBackPage";
 import ProfilePage from "./pages/ProfilePage";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 const AppRoutes = () => {
   return (
@@ -15,14 +16,16 @@ const AppRoutes = () => {
           </Layout>
         }
       />
-      <Route
-        path="/profile"
-        element={
-          <Layout showHero={false}>
-            <ProfilePage />
-          </Layout>
-        }
-      />
+      <Route element={<ProtectedRoute />}>
+        <Route
+          path="/profile"
+          element={
+            <Layout showHero={false}>
+              <ProfilePage />
+            </Layout>
+          }
+        />
+      </Route>
       <Route path="/auth-callback" element={<CallBackPage />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
