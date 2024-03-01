@@ -34,7 +34,13 @@ export default function UserMenu() {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="flex justify-center">
-            <Button onClick={async () => logout()}>Log Out</Button>
+            <Button
+              onClick={async () =>
+                await logout({ logoutParams: { returnTo: "/" } })
+              }
+            >
+              Log Out
+            </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

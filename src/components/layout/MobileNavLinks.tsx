@@ -15,7 +15,7 @@ export default function MobileNavLinks() {
       </Link>
       <Button
         className="px-3 font-bold hover:bg-gray-500"
-        onClick={async () => await logout()}
+        onClick={async () => await logout({ logoutParams: { returnTo: "/" } })}
       >
         Log Out
       </Button>
