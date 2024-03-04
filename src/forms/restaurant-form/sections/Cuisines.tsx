@@ -1,4 +1,9 @@
-import { FormDescription, FormField, FormItem } from "@/components/ui/form";
+import {
+  FormDescription,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { cuisines } from "@/config/cuisine-options";
 import { useFormContext } from "react-hook-form";
 import CuisineItem from "./CuisineItem";
@@ -31,6 +36,7 @@ export default function CuisinesSection() {
                   />
                 ))}
               </div>
+              <FormMessage />
             </FormItem>
           );
         }}

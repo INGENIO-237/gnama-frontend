@@ -6,6 +6,7 @@ import DetailsSection from "./sections/Details";
 import { Form } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import CuisinesSection from "./sections/Cuisines";
+import MenuSection from "./sections/Menu";
 
 const formSchema = object({
   name: string({ required_error: "Name is required" }),
@@ -61,6 +62,8 @@ export default function ManageRestaurantForm({ onSave, isLoading }: Props) {
           <DetailsSection />
           <Separator />
           <CuisinesSection />
+          <Separator />
+          <MenuSection />
         </form>
       </FormProvider>
     </Form>
