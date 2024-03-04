@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { array, coerce, object, string, z } from "zod";
 import DetailsSection from "./sections/Details";
 import { Form } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import CuisinesSection from "./sections/Cuisines";
 import MenuSection from "./sections/Menu";
+import ImageSection from "./sections/Image";
+import LoadingButton from "@/components/helpers/LoadingButton";
+import { Button } from "@/components/ui/button";
 
 const formSchema = object({
   name: string({ required_error: "Name is required" }),
@@ -38,7 +41,7 @@ type Props = {
 };
 
 export default function ManageRestaurantForm({ onSave, isLoading }: Props) {
-  console.log(onSave, isLoading);
+  console.log(onSave);
 
   const form = useForm<RestaurantFormData>({
     resolver: zodResolver(formSchema),
@@ -54,18 +57,19 @@ export default function ManageRestaurantForm({ onSave, isLoading }: Props) {
 
   return (
     <Form {...form}>
-      <FormProvider {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 bg-gray-50 p-10 rounded-lg"
-        >
-          <DetailsSection />
-          <Separator />
-          <CuisinesSection />
-          <Separator />
-          <MenuSection />
-        </form>
-      </FormProvider>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8 bg-gray-50 p-10 rounded-lg"
+      >
+        <DetailsSection />
+        <Separator />
+        <CuisinesSection />
+        <Separator />
+        <MenuSection />
+        <Separator />
+        <ImageSection />
+        {isLoading ? <LoadingButton /> : <Button type="submit">Save</Button>}
+      </form>
     </Form>
   );
 }
