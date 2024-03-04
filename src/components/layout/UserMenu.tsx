@@ -23,7 +23,7 @@ export default function UserMenu() {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>
-            <Link to="#" className="hover:text-orange-500">
+            <Link to="/store" className="hover:text-orange-500">
               My Restaurant
             </Link>
           </DropdownMenuItem>

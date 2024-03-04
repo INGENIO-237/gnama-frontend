@@ -7,7 +7,7 @@ export default function MobileNavLinks() {
 
   return (
     <div className="flex flex-col flex-1 space-y-5 justify-center">
-      <Link to="/my-shop" className="font-bold hover:text-orange-500">
+      <Link to="/store" className="font-bold hover:text-orange-500">
         My Restaurant
       </Link>
       <Link to="/profile" className="font-bold hover:text-orange-500">

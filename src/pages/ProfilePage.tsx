@@ -1,5 +1,5 @@
 import { useGetUser, useUpdateUser } from "@/api/data/users";
-import UserProfileForm from "@/forms/UserProfile";
+import UserProfileForm from "@/forms/profile/UserProfile";
 
 export default function ProfilePage() {
   const { currentUser, isLoading: isLoadingUser } = useGetUser();

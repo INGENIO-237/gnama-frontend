@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "react-query";
 import server from "../server";
 import { useAuth0 } from "@auth0/auth0-react";
-import { ProfileFormData } from "@/forms/UserProfile";
+import { ProfileFormData } from "@/forms/profile/UserProfile";
 import { toast } from "sonner";
 
 type CreateUserPayload = {
