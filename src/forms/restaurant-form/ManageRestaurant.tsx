@@ -4,6 +4,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { array, coerce, object, string, z } from "zod";
 import DetailsSection from "./sections/Details";
 import { Form } from "@/components/ui/form";
+import { Separator } from "@/components/ui/separator";
+import CuisinesSection from "./sections/Cuisines";
 
 const formSchema = object({
   name: string({ required_error: "Name is required" }),
@@ -35,6 +37,8 @@ type Props = {
 };
 
 export default function ManageRestaurantForm({ onSave, isLoading }: Props) {
+  console.log(onSave, isLoading);
+
   const form = useForm<RestaurantFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,6 +59,8 @@ export default function ManageRestaurantForm({ onSave, isLoading }: Props) {
           className="space-y-8 bg-gray-50 p-10 rounded-lg"
         >
           <DetailsSection />
+          <Separator />
+          <CuisinesSection />
         </form>
       </FormProvider>
     </Form>
