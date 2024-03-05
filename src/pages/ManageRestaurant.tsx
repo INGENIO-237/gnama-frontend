@@ -1,9 +1,14 @@
-import { useCreateRestaurant } from "@/api/data/restaurant";
+import { useCreateRestaurant, useGetRestaurant } from "@/api/data/restaurant";
 import ManageRestaurantForm from "@/forms/restaurant-form/ManageRestaurant";
 
 export default function ManageRestaurantPage() {
   const { createRestaurant, isLoading } = useCreateRestaurant();
+  const { restaurant } = useGetRestaurant();
   return (
-    <ManageRestaurantForm onSave={createRestaurant} isLoading={isLoading} />
+    <ManageRestaurantForm
+      restaurant={restaurant}
+      onSave={createRestaurant}
+      isLoading={isLoading}
+    />
   );
 }

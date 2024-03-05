@@ -20,7 +20,10 @@ export function useCreateUser() {
   async function createUser(user: CreateUserPayload) {
     return server
       .post("/users", user)
-      .then(async (response) => response)
+      .then(async (response) => {
+        localStorage.setItem("userId", response.data._id);
+        return response;
+      })
       .catch((error) => {
         console.log({ error });
         throw new Error("Failed to create user");
@@ -45,7 +48,7 @@ export function useUpdateUser() {
         name,
         address: { street, city, country },
       })
-      .then((response) => response)
+      .then((response) => response.data)
       .catch((error) => {
         console.log(error);
         throw new Error("Failed to update user!");
