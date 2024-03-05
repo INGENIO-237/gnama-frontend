@@ -41,8 +41,6 @@ type Props = {
 };
 
 export default function ManageRestaurantForm({ onSave, isLoading }: Props) {
-  console.log(onSave);
-
   const form = useForm<RestaurantFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,7 +50,29 @@ export default function ManageRestaurantForm({ onSave, isLoading }: Props) {
   });
 
   function onSubmit(data: RestaurantFormData) {
-    return data;
+    const formData = new FormData();
+
+    formData.append("name", data.name);
+    formData.append("city", data.city);
+    formData.append("country", data.country);
+    formData.append("deliveryPrice", (data.deliveryPrice * 100).toString());
+    formData.append(
+      "estimatedDeliveryTime",
+      data.estimatedDeliveryTime.toString()
+    );
+    data.cuisines.forEach((cuisine, index) => {
+      formData.append(`cuisines[${index}]`, cuisine);
+    });
+    data.menuItems.forEach((menuItem, index) => {
+      formData.append(`menuItems[${index}].name`, menuItem.name);
+      formData.append(
+        `menuItems[${index}].price`,
+        (menuItem.price * 100).toString()
+      );
+    });
+    formData.append("image", data.image);
+
+    onSave(formData);
   }
 
   return (
